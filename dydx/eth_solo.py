@@ -34,7 +34,8 @@ class EthSolo(object):
         wei,
         ref,
         otherAddress,
-        asEth=True
+        gasPrice=consts.DEFAULT_GAS_PRICE,
+        asEth=True,
     ):
         if market < 0 or market >= consts.MARKET_INVALID:
             raise ValueError('Invalid market number')
@@ -70,7 +71,8 @@ class EthSolo(object):
                 wei
                 if (isDeposit and market == consts.MARKET_WETH and asEth)
                 else 0
-            )
+            ),
+            gasPrice=gasPrice,
         )
 
         if market == consts.MARKET_WETH and asEth:
@@ -120,6 +122,7 @@ class EthSolo(object):
         self,
         market,
         wei,
+        gasPrice,
         asEth=True
     ):
         '''
@@ -144,6 +147,7 @@ class EthSolo(object):
             wei=wei,
             ref=consts.REFERENCE_DELTA,
             otherAddress=self.public_address,
+            gasPrice=gasPrice,
             asEth=asEth
         )
 
@@ -151,6 +155,7 @@ class EthSolo(object):
         self,
         market,
         wei,
+        gasPrice,
         to=None,
         asEth=True
     ):
@@ -179,6 +184,7 @@ class EthSolo(object):
             wei=wei,
             ref=consts.REFERENCE_DELTA,
             otherAddress=(to or self.public_address),
+            gasPrice=gasPrice,
             asEth=asEth
         )
 
