@@ -191,6 +191,7 @@ class EthSolo(object):
     def withdraw_to_zero(
         self,
         market,
+        gasPrice=consts.DEFAULT_GAS_PRICE,
         to=None
     ):
         '''
@@ -211,6 +212,7 @@ class EthSolo(object):
             market=market,
             wei=0,
             ref=consts.REFERENCE_TARGET,
+            gasPrice=gasPrice,
             otherAddress=(to or self.public_address)
         )
 
